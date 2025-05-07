@@ -138,17 +138,34 @@ st.markdown(
 
 # --- Model Loading with Error Handling ---
 @st.cache_resource
+@st.cache_resource
 def load_models():
-    """Load ML models with proper error handling."""
+    """Load ML models with proper error handling and detailed debugging."""
     try:
-        model_price = load_model("models/lstm_price_model.h5", compile=False)
-        model_fsi = joblib.load("models/rf_fsi_model.pkl")
-        scaler_price = joblib.load("models/price_scaler.pkl")
+        models_dir = r"C:\Users\Wan Fahim\OneDrive\APU\4th Semester\FYP\fyp-streanlit-app\models"
+        fsi_path = os.path.join(models_dir, "rf_fsi_model.pkl")
+        scaler_path = os.path.join(models_dir, "price_scaler.pkl")
+        price_path = os.path.join(models_dir, "lstm_price_model.h5")
+
+        # Check if files exist and log
+        for path, name in zip([fsi_path, scaler_path, price_path], ["FSI Model", "Scaler", "Price Model"]):
+            if not os.path.exists(path):
+                msg = f"{name} file not found at: {path}"
+                logging.error(msg)
+                st.error(f"❌ {msg}")
+                return None, None, None
+            else:
+                logging.info(f"{name} found at: {path}")
+
+        model_fsi = joblib.load(fsi_path)
+        scaler_price = joblib.load(scaler_path)
+        model_price = load_model(price_path, compile=False)
+
         logging.info("Models loaded successfully")
         return model_price, model_fsi, scaler_price
     except Exception as e:
         logging.error(f"Error loading models: {str(e)}")
-        st.error("⚠️ Error loading models. Please check if model files exist in the 'models' directory.")
+        st.error(f"⚠️ Error loading models: {str(e)}")
         return None, None, None
 
 # Load models
