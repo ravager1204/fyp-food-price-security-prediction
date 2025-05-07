@@ -1,0 +1,20 @@
+# Exclude large files
+*.csv
+*.pkl
+*.joblib
+*.sqlite
+*.h5
+*.pyd
+*.dll
+
+# Exclude virtual environments
+venv/
+.venv/
+
+# Exclude cache
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+
+# Exclude secrets
+.env
