@@ -38,6 +38,21 @@ Asia Pacific University of Technology & Innovation (APU)
 
 ---
 
+## 📂 Project Structure
+
+project-root/
+│
+├── data/ # Input datasets (CSV)
+├── models/ # Trained models (.pkl)
+├── streamlit_app/ # Streamlit UI logic
+├── utils/ # Helper functions and validation
+├── notebooks/ # Jupyter notebooks for model testing
+├── requirements.txt # Python dependencies
+└── README.md # This file
+
+
+---
+
 ## ⚙️ Setup Instructions
 
 1. **Clone the repository**
