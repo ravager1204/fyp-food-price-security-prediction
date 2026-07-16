@@ -11,13 +11,11 @@ df = pd.DataFrame({
 })
 
 # Proper connection string for new Snowflake web UI format
+
 conn_str = (
-    "snowflake://fahimmunirzaki:Zaq12wsx123456789%@/"
-    "?account=fq41450.uzyefre"
-    "&warehouse=COMPUTE_WH"
-    "&database=FYP_DB"
-    "&schema=PUBLIC"
-    "&role=ACCOUNTADMIN"
+    f"snowflake://{os.environ['SNOWFLAKE_USER']}:{os.environ['SNOWFLAKE_PASSWORD']}@/"
+    f"?account={os.environ['SNOWFLAKE_ACCOUNT']}"
+    "&warehouse=COMPUTE_WH&database=FYP_DB&schema=PUBLIC&role=ANALYST"  # not ACCOUNTADMIN
 )
 
 
